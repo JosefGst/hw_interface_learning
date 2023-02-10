@@ -1,2 +1,9 @@
-type: "velocity_controllers/JointVelocityController"
-joint: shaft_output_joint
+# TODO: NOT WORKING 
+# motor_position_controller:
+#   type: "velocity_controllers/JointPositionController"
+#   joint: shaft_output_joint
+#   pid: {p: 1300.0, i: 0.0, d: 5, i_clamp_min: -130.0, i_clamp_max: 130, antiwindup: True}
+
+motor_velocity_controller:
+  type: "velocity_controllers/JointVelocityController"
+  joint: shaft_output_joint

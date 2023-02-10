@@ -19,3 +19,8 @@ send a velocity command to the motor
 ```
 rostopic pub --once /motor_velocity_controller/command std_msgs/Float64 "data: 0.50"
 ```
+
+## resources:
+
+https://www.rosroboticslearning.com/ros-control
+https://github.com/bandasaikrishna/ros_control_example

@@ -31,7 +31,8 @@
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
         <joint name="shaft_output_joint">
-            <hardwareInterface>VelocityJointInterface</hardwareInterface>
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
         </joint>
     </transmission>
 
