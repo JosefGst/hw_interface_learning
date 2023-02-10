@@ -1,0 +1,35 @@
+<launch>
+  <arg name="model" default="motor"/>
+  <arg name="x_pos" default="0"/>
+  <arg name="y_pos" default="0"/>
+  <arg name="z_pos" default="0"/>
+  <arg name="multi_robot_name" default="/"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- robot model -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find motor_description)/urdf/$(arg model).urdf.xacro" />
+
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model $(arg model) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+
+
+  <!-- joint controller  -->
+  <!-- joint_state publisher -->
+  <rosparam command="load" file="$(find motor_description)/config/joints.yaml" ns="joint_state_controller" />
+  <!-- joint_velocity controller -->
+  <rosparam command="load" file="$(find motor_description)/config/motor_control.yaml" ns="motor_velocity_controller" />
+  <!-- ros controller manager -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" args="
+        motor_velocity_controller
+        joint_state_controller
+        --shutdown-timeout 3"/>
+
+
+
+</launch>

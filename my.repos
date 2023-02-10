@@ -1,0 +1,5 @@
+repositories:
+  urdf_basic_shapes:
+    type: git
+    url: git@github.com:JosefGst/urdf_basic_shapes.git
+    version: melodic-devel

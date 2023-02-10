@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot name="motor_hw_interface"
+    xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <!-- basic shapes -->
+    <xacro:include filename="$(find urdf_basic_shapes)/urdf/basic_shapes.urdf.xacro"/>
+
+
+    <link name="base_footprint"/>
+
+    <!-- motor base_link -->
+    <xacro:cylinder_shape name="base_link" r="0.5" h="1" ori="0 0 0" rpy="0 0 0" rgb="Gray" m=".5" friction="${standard_friction}"/>
+    <joint name="motor_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    </joint>
+
+    <!-- cubeical base_link -->
+    <xacro:cube name="shaft_output" x="1" y=".2" z=".1" ori="-.5 0 .05" rpy="0 0 0" rgb="Orange" m=".1" friction="${standard_friction}"/>
+    <joint name="shaft_output_joint" type="continuous">
+        <axis xyz="0 0 1" rpy="0 0 0" />
+        <parent link="base_link"/>
+        <child link="shaft_output"/>
+        <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    </joint>
+
+    <transmission name="shaft_output_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="shaft_output_joint">
+            <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <!-- Gazebo plugin for ROS Control -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+
+</robot>
