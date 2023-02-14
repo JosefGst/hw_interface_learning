@@ -3,3 +3,7 @@ repositories:
     type: git
     url: git@github.com:JosefGst/urdf_basic_shapes.git
     version: melodic-devel
+  serial:
+    type: git
+    url: git@github.com:wjwwood/serial.git
+    version: main

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="model" default="motor"/>
+  <arg name="x_pos" default="0"/>
+  <arg name="y_pos" default="0"/>
+  <arg name="z_pos" default="0"/>
+
+
+  <!-- robot model -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find motor_description)/urdf/$(arg model).urdf.xacro" />
+
+
+  <node name="motor_hw_interface" pkg="motor_interface" type="motor_hw_interface" output="screen"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find motor_interface)/rviz/rviz.rviz"/>
+
+  <!-- joint controller  -->
+  <!-- joint_state publisher -->
+  <rosparam command="load" file="$(find motor_description)/config/joints.yaml"/>
+  <!-- joint_velocity controller -->
+  <rosparam command="load" file="$(find motor_description)/config/motor_control.yaml" />
+  <!-- ros controller manager -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
+        motor_velocity_controller
+        joint_state_controller
+        "/>
+</launch>

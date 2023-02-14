@@ -29,6 +29,7 @@
         <type>transmission_interface/SimpleTransmission</type>
         <actuator name="motor">
             <mechanicalReduction>1</mechanicalReduction>
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         </actuator>
         <joint name="shaft_output_joint">
             <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
