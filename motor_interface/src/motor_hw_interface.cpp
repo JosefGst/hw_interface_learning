@@ -10,7 +10,7 @@ MyMotor::MyMotor(ros::NodeHandle &nh) : nh_(nh)
     controller_manager_.reset(new controller_manager::ControllerManager(this, nh_));
 
     // Set the frequency of the control loop.
-    loop_hz_ = 40;
+    loop_hz_ = 200;
     ros::Duration update_freq = ros::Duration(1.0 / loop_hz_);
 
     // Run the control loop
