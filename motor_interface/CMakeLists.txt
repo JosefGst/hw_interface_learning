@@ -136,10 +136,10 @@ include_directories(
 # # With catkin_make all packages are built within a single CMake context
 # # The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/motor_interface_node.cpp)
+add_executable(rmdx_test src/rmdx_test.cpp src/rmdx.cpp)
+target_link_libraries(rmdx_test ${catkin_LIBRARIES})
+add_dependencies(rmdx_test serial)
 
-# add_executable(rmdx src/rmdx.cpp)
-# target_link_libraries(rmdx ${catkin_LIBRARIES})
-# add_dependencies(rmdx serial)
 add_executable(motor_hw_interface src/motor_hw_interface.cpp src/rmdx.cpp include/rmdx.h)
 target_link_libraries(motor_hw_interface ${catkin_LIBRARIES})
 add_dependencies(motor_hw_interface serial)
