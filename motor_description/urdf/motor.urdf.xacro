@@ -19,7 +19,7 @@
     <!-- cubeical base_link -->
     <xacro:cube name="shaft_output" x="1" y=".2" z=".1" ori="-.5 0 .05" rpy="0 0 0" rgb="Orange" m=".1" friction="${standard_friction}"/>
     <joint name="shaft_output_joint" type="continuous">
-        <axis xyz="0 0 1" rpy="0 0 0" />
+        <axis xyz="0 0 -1" rpy="0 0 0" />
         <parent link="base_link"/>
         <child link="shaft_output"/>
         <origin xyz="0 0 0.5" rpy="0 0 0"/>

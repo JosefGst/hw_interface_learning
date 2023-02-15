@@ -1,3 +1,6 @@
+#ifndef CRC_CHECK
+#define CRC_CHECK
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -7,11 +10,11 @@
 #include <iostream>
 #include <vector>
 #include <cstdio>
-#include <sstream>
+// #include <sstream>
 
-using namespace std;
-using std::cerr;
-std::stringstream ss;
+// using namespace std;
+// using std::cerr;
+// std::stringstream ss;
 
 constexpr unsigned short crc16_table[] = {
     0x0000, 0xC0C1, 0xC181, 0x0140, 0xC301, 0x03C0, 0x0280, 0xC241,
@@ -47,7 +50,7 @@ constexpr unsigned short crc16_table[] = {
     0x4400, 0x84C1, 0x8581, 0x4540, 0x8701, 0x47C0, 0x4680, 0x8641,
     0x8201, 0x42C0, 0x4380, 0x8341, 0x4100, 0x81C1, 0x8081, 0x4040};
 
-unsigned short crc16(const unsigned char *data, unsigned short len)
+static inline unsigned short crc16(const unsigned char *data, unsigned short len)
 {
 
     unsigned char i;
@@ -65,3 +68,4 @@ unsigned short crc16(const unsigned char *data, unsigned short len)
     return (unsigned short)crc;
 };
 
+#endif

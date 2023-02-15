@@ -10,7 +10,7 @@ MyMotor::MyMotor(ros::NodeHandle &nh) : nh_(nh)
     controller_manager_.reset(new controller_manager::ControllerManager(this, nh_));
 
     // Set the frequency of the control loop.
-    loop_hz_ = 1;
+    loop_hz_ = 40;
     ros::Duration update_freq = ros::Duration(1.0 / loop_hz_);
 
     // Run the control loop
@@ -41,6 +41,9 @@ void MyMotor::init()
     registerInterface(&position_joint_interface_);
     // registerInterface(&velocityJointSaturationInterface);
     // registerInterface(&positionJointSaturationInterface);
+
+    motor.beginn("/dev/ttyUSB0", 115200, 0x00);
+    motor.get_temp();
 }
 
 // This is the control loop
@@ -60,9 +63,9 @@ void MyMotor::read()
     //  and fill JointStateHandle variables joint_position_[i], joint_velocity_[i] and joint_effort_[i]
 
     // motor.read_stat();
-    joint_position_ = joint_velocity_command_;
-    joint_velocity_ = joint_velocity_command_;
-    joint_effort_ = joint_velocity_command_;
+    joint_position_ = motor.get_angle() * DEG_TO_RAD;
+    joint_velocity_ = motor.get_speed_dps() * DEG_TO_RAD;
+    joint_effort_ = motor.get_torque();
 }
 
 void MyMotor::write(ros::Duration elapsed_time)
@@ -76,8 +79,7 @@ void MyMotor::write(ros::Duration elapsed_time)
 
     // joint_position_command_ for JointC.
 
-    ROS_INFO("Hello %f", joint_velocity_command_);
-    // motor.vel_cmd(joint_velocity_command_);
+    motor.vel_cmd(joint_velocity_command_ * RAD_TO_DEG);
 }
 
 int main(int argc, char **argv)

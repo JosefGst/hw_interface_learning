@@ -106,7 +106,6 @@ catkin_package(
 
   # LIBRARIES motor_interface
 
-  # CATKIN_DEPENDS roscpp serial
   # DEPENDS system_lib
 )
 
@@ -124,7 +123,8 @@ include_directories(
 
 # # Declare a C++ library
 # add_library(${PROJECT_NAME}
-# src/${PROJECT_NAME}/motor_interface.cpp
+# src/motor_hw_interface.cpp
+# src/rmdx.cpp
 # )
 
 # # Add cmake target dependencies of the library
@@ -136,11 +136,11 @@ include_directories(
 # # With catkin_make all packages are built within a single CMake context
 # # The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/motor_interface_node.cpp)
-add_executable(rmdx src/rmdx.cpp)
-target_link_libraries(rmdx ${catkin_LIBRARIES})
-add_dependencies(rmdx serial)
 
-add_executable(motor_hw_interface src/motor_hw_interface.cpp)
+# add_executable(rmdx src/rmdx.cpp)
+# target_link_libraries(rmdx ${catkin_LIBRARIES})
+# add_dependencies(rmdx serial)
+add_executable(motor_hw_interface src/motor_hw_interface.cpp src/rmdx.cpp include/rmdx.h)
 target_link_libraries(motor_hw_interface ${catkin_LIBRARIES})
 add_dependencies(motor_hw_interface serial)
 

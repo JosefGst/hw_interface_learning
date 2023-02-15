@@ -82,6 +82,29 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        base_footprint:
+          Value: true
+        base_link:
+          Value: true
+        shaft_output:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        base_footprint:
+          base_link:
+            shaft_output:
+              {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -117,18 +140,18 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.10325367003679276
-        Y: -0.6294350028038025
-        Z: 0.5645805597305298
+        X: -0.3030818700790405
+        Y: 0.44088512659072876
+        Z: -0.4047073423862457
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5053982734680176
+      Pitch: 0.6453981399536133
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.8503979444503784
+      Yaw: 0.6603981256484985
     Saved: ~
 Window Geometry:
   Displays:
@@ -147,4 +170,4 @@ Window Geometry:
     collapsed: false
   Width: 1267
   X: 60
-  Y: 30
+  Y: 0

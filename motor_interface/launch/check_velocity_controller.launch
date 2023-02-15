@@ -12,7 +12,7 @@
 
   <node name="motor_hw_interface" pkg="motor_interface" type="motor_hw_interface" output="screen"/>
 
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
   </node>
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find motor_interface)/rviz/rviz.rviz"/>

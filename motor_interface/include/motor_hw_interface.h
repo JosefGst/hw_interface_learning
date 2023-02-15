@@ -11,6 +11,9 @@
 #include <ros/ros.h>
 #include "rmdx.h"
 
+#define DEG_TO_RAD 0.01745329251
+#define RAD_TO_DEG 57.2957795131
+
 class MyMotor : public hardware_interface::RobotHW
 {
 public:
@@ -20,6 +23,7 @@ public:
     void update(const ros::TimerEvent &e);
     void read();
     void write(ros::Duration elapsed_time);
+    RMDX motor;
 
 protected:
     hardware_interface::JointStateInterface joint_state_interface_;
@@ -35,6 +39,7 @@ protected:
     double joint_effort_;
     double joint_velocity_command_;
     double joint_position_command_;
+    double joint_effort_command_;
 
     ros::NodeHandle nh_;
     ros::Timer my_control_loop_;

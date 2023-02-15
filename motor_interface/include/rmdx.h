@@ -38,6 +38,8 @@ private:
     int32_t prev_vel_cmd = 0;
     int8_t vel_update_count = 0;
 
+    // bool test_;
+
 public:
     // motor config
     uint16_t SPEED_DIF_MIN = 50; // the diff between a new speed command must be bigger as this value, otherwise will not take new command
@@ -64,6 +66,8 @@ public:
     double get_torque();
     double get_speed_dps();
     double get_angle();
+
+    void test();
 };
 
 #endif
